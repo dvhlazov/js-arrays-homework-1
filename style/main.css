@@ -1,0 +1,73 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.container {
+    width: 1100px;
+    margin: 0 auto;
+}
+form {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 20px;
+}
+.info {
+    padding: 20px 0 0 40px;
+    color: red;
+}
+table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+th {
+    width: 1100px;
+    border: 1px solid #000;
+    padding: 20px;
+    margin: 0;
+    text-align: center;
+}
+td {
+    border: 1px solid #000;
+    padding: 20px;
+    margin: 0;
+    text-align: center;
+}
+th:nth-child(1) {
+    width: 50px;
+}
+#input_eror {
+    text-align: center;
+}
+.style_yes {
+    color: black;
+}
+.style_no {
+    color: red;
+}
+
+.sheetlist table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.sheetlist th, .sheetlist td {
+    border: 1px solid #000;
+    padding: 10px;
+    text-align: center;
+}
+
+.sheetlist th {
+    background-color: #f0f0f0;
+}
+
+
+.number {
+    width: 50px;
+}
+
+.next_list_yes {
+    width: 1100px;
+}

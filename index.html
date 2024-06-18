@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Animation</title>
+    <link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+  <div class="container">
+    <h4>Рейтинг студентів за кількістю балів</h4>
+    <form id="student_list">
+        <label for="student_name">Ім'я</label><input type="text" name="student_name" id="student_name">
+        <label for="student_surname">Прізвище</label><input type="text" name="student_surname" id="student_surname">
+        <label for="student_score">Кількість балів (від 1 до 100)</label><input type="number" name="student_score" id="student_score">
+        <label for="btn"><button type="submit">Підтвердити</button></label>
+    </form>
+    <p id="input_eror"></p>
+  </div>
+  <div class="container">
+    <p class="info">Прохідний бал для студентів, які потрапили на бюджетну форму навчання складає 77 балів</p>
+    <hr>
+    <div class="container">
+        <div class="sheetlist">
+          <table>
+            <tbody>
+            <tr>
+                <th class="number">N#</th>
+                <th>Ім'я</th>
+                <th>Прізвище</th>
+                <th>Кількість балів</th>
+            </tr>
+            
+            <tr id="next_list_yes">
+                <td class="number">1</td>
+                <td></td> <!-- Ім'я -->
+                <td></td> <!-- Прізвище -->
+                <td></td> <!-- Кількість балів -->
+            </tr>
+          </tbody>
+        </table>
+        </div>
+    </div>
+  </div>
+  <script src="script/main.js"></script>
+</body>
+</html>
