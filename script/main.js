@@ -2,8 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {      // Об'єкт
     const form = document.getElementById('student_list');
     const inputError = document.getElementById('input_eror');
     const tableBody = document.querySelector('.sheetlist table tbody');
+    const btnSort = document.querySelectorAll('.btn-sort');
+    let sortBool = true; // Для сортування
 
-    let formDataArray = [];      // Массив
+    let formDataArray = [];      // Масив
                    
 
     form.addEventListener('submit', (event) => {    // отримання значеннь  з інпутів
@@ -44,22 +46,33 @@ document.addEventListener('DOMContentLoaded', () => {      // Об'єкт
                 score: inputScore
             };          
             formDataArray.push(formData);
-            formDataArray.sort((a, b) => b.score - a.score); //Сортування від найбільшого значення до найменшого
+            
             updateTable(formDataArray);
+
+           
+        
         }
     });
+    
 
     
-   let updateTable = (formDataArray) => {  // Оновлення та зміна даних в массиві нових даних і додавання  їх в ХТМЛ
-        
-        tableBody.innerHTML = `
-        <th>N#</th>
-        <th>Ім'я</th>
-        <th>Прізвище</th>
-        <th>Кількість балів</th>
-        `;
 
-        formDataArray.forEach((formData, index) => { // Створення в масиві нового рядку;
+    let updateTable = (formDataArray) => {
+        // Очистка таблиці
+        tableBody.innerHTML = '';
+    
+        // Створення заголовків таблиці з кнопками сортування
+        const headerRow = document.createElement('tr');
+        headerRow.innerHTML = `
+            <th>N# </th>
+            <th>Ім'я <button class="btn-sort" data-sort-by="name"><i class="fa-solid fa-sort"></i></button></th>
+            <th>Прізвище <button class="btn-sort" data-sort-by="surname"><i class="fa-solid fa-sort"></i></button></th>
+            <th>Кількість балів <button class="btn-sort" data-sort-by="score"><i class="fa-solid fa-sort"></i></button></th>
+        `;
+        tableBody.appendChild(headerRow);
+    
+        // Створення рядків даних
+        formDataArray.forEach((formData, index) => {
             const newRow = document.createElement('tr');
             newRow.innerHTML = `
                 <td>${index + 1}</td>
@@ -67,7 +80,52 @@ document.addEventListener('DOMContentLoaded', () => {      // Об'єкт
                 <td>${formData.surname}</td>
                 <td>${formData.score}</td>
             `;
+            if (formData.score < 77) {
+                newRow.classList.add('style_no');
+            }
             tableBody.appendChild(newRow);
+            
         });
-    }
+    
+        applyTableStyling();  // включення події сортування та застосування кнопок до останнього новоствореного рядка
+    };
+    
+    let applyTableStyling = () => {
+        // Оновлення обробників подій для кнопок сортування
+        const btnSort = document.querySelectorAll('.btn-sort');
+        btnSort.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const sortBy = btn.getAttribute('data-sort-by');
+    
+                if (sortBool) {
+                    if (sortBy === 'name') {
+                        formDataArray.sort((a, b) => a.name.localeCompare(b.name));
+                    } else if (sortBy === 'surname') {
+                        formDataArray.sort((a, b) => a.surname.localeCompare(b.surname));
+                    } else if (sortBy === 'score') {
+                        formDataArray.sort((a, b) => a.score - b.score);
+                    }
+                } else {
+                    if (sortBy === 'name') {
+                        formDataArray.sort((a, b) => b.name.localeCompare(a.name));
+                    } else if (sortBy === 'surname') {
+                        formDataArray.sort((a, b) => b.surname.localeCompare(a.surname));
+                    } else if (sortBy === 'score') {
+                        formDataArray.sort((a, b) => b.score - a.score);
+                    }
+                }
+    
+                sortBool = !sortBool;
+                updateTable(formDataArray);
+            });
+        });
+    };
+    
+    
+    updateTable(formDataArray);
 });
+
+
+
+
+

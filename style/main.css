@@ -71,3 +71,12 @@ th:nth-child(1) {
 .next_list_yes {
     width: 1100px;
 }
+.btn-sort {
+    border: none;
+}
+.btn-sort:hover {
+    background-color: rgb(193, 202, 202);
+}
+.btn-sort:focus {
+    background-color: aquamarine;
+}
